@@ -1,0 +1,86 @@
+/* App.module.css */
+
+.body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    margin: 0;
+    font-family: Roboto, sans-serif;
+}
+
+.calculator {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    width: 320px;
+}
+
+.display {
+    background-color: #222;
+    color: #ffffff;
+    font-size: 2.5rem;
+    padding: 20px;
+    height: 60px;
+    text-align: right;
+    transition: background-color 0.3s;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+    background-color: #444;
+    padding: 10px;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+.button {
+    background-color: #555;
+    border: none;
+    font-size: 1.5rem;
+    padding: 20px;
+    cursor: pointer;
+    color: #fff;
+    transition: background-color 0.3s, transform 0.1s;
+    border-radius: 6px;
+}
+
+.button:hover {
+    background-color: #666;
+}
+
+.button:active {
+    background-color: #777;
+    transform: scale(0.95);
+}
+
+.button.operator {
+    background-color: #ff5722;
+}
+
+.button.operator:hover {
+    background-color: #ff7043;
+}
+
+.button.operator:active {
+    background-color: #ff8a65;
+}
+
+.button.equal {
+    background-color: #4caf50;
+    grid-column: span 2;
+}
+
+.button.equal:hover {
+    background-color: #66bb6a;
+}
+
+.button.equal:active {
+    background-color: #81c784;
+}
