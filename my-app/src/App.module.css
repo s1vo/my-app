@@ -1,91 +1,92 @@
-.body {
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+  'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+
+:root {
+  --accent-color-hue: 236;
+  --accent-color-saturation: 100%;
+  --disabled-color: #cfcfcf;
+  --error-color: #d40000;
+}
+
+.app {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.error {
+  color: var(--error-color);
+  font-weight: bold;
+}
+
+.pageHeading {
+  margin: 0 0 0.5rem;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.noMarginText {
+  margin: 0;
+}
+
+.currentValue {
+  font-weight: bold;
+}
+
+.buttonsContainer {
+  margin-top: 1.5rem;
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #f0f0f0;
-  margin: 0;
-  font-family: Arial, sans-serif;
-}
-
-.calculator {
-  background-color: #fff;
-  border-radius: 15px;
-  overflow: hidden;
-  width: 350px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.display {
-  background-color: #222;
-  color: #fff;
-  font-size: 2.5rem;
-  padding: 20px;
-  text-align: right;
-  height: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-.buttons {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background-color: #333;
+  gap: 10px;
 }
 
 .button {
-  background-color: #555;
+  padding: 0.5em 0.75em;
+  background-color: hsl(var(--accent-color-hue), var(--accent-color-saturation), 92%);
+  font-size: 18px;
   border: none;
-  font-size: 1.5rem;
-  padding: 20px;
-  cursor: pointer;
-  color: #fff;
-  transition: background-color 0.3s, transform 0.1s;
+  transition: background-color 0.15s ease;
 }
 
 .button:hover {
-  background-color: #666;
+  background-color: hsl(var(--accent-color-hue), var(--accent-color-saturation), 87%);
 }
 
 .button:active {
-  background-color: #777;
-  transform: scale(0.95);
+  background-color: hsl(var(--accent-color-hue), var(--accent-color-saturation), 82%);
 }
 
-.button.operator {
-  background-color: #ff9500;
+.button:disabled {
+  background-color: var(--disabled-color);
 }
 
-.button.operator:hover {
-  background-color: #ffa733;
+.listContainer {
+  margin-top: 1.5rem;
 }
 
-.button.operator:active {
-  background-color: #ffb766;
+.listHeading {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0 0 0.5rem;
 }
 
-.button.equal {
-  background-color: #4caf50;
+.list {
+  text-align: left;
+  margin: 0 auto;
+  max-width: 300px;
 }
 
-.button.equal:hover {
-  background-color: #66bb6a;
-}
-
-.button.equal:active {
-  background-color: #81c784;
-}
-
-.button.clear {
-  background-color: #ff3b30;
-}
-
-.button.clear:hover {
-  background-color: #ff6257;
-}
-
-.button.clear:active {
-  background-color: #ff8985;
+.listItem:not(:last-child) {
+  margin-bottom: 0.5em;
 }
