@@ -1,72 +1,77 @@
-.container {
-	text-align: center;
-	max-width: 950px;
-	margin: 0 auto;
-}
-
-.buttons-container {
-	display: flex;
-	justify-content: center;
-	gap: 10px;
-}
-
-.button {
-	padding: 0.5em 0.75em;
-	background-color: hsl(var(--accent-color-hue), var(--accent-color-saturation), 92%);
-	font-size: 18px;
-	border: none;
-	transition: background-color 0.15s ease;
-}
-
-.button:hover {
-	background-color: hsl(var(--accent-color-hue), var(--accent-color-saturation), 87%);
-}
-
-.button:disabled {
-	background-color: var(--disabled-color);
-}
-
-.steps-content {
-	margin-bottom: 30px;
-	min-height: 100px;
-	border: 2px solid hsl(var(--accent-color-hue), var(--accent-color-saturation), 92%);
+/* Контейнер формы */
+.formContainer {
+	background: linear-gradient(145deg, #ffffff, #e6e9ef);
+	padding: 40px;
 	border-radius: 15px;
-	padding: 15px 20px;
+	box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1), -10px -10px 20px rgba(255, 255, 255, 0.7);
+	max-width: 400px;
+	width: 100%;
 }
 
-.steps-list {
-	list-style: none;
-	margin: 0;
-	margin-bottom: 30px;
-	padding: 0;
-	display: flex;
-	justify-content: space-between;
-	gap: 15px;
-}
-
-.steps-item {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	flex: 1 1 0px;
-	font-size: 0.75rem;
-}
-
-.steps-item-button {
-	cursor: pointer;
-	border-radius: 50%;
-	padding: 0.75rem 1rem;
-	background: #cccccc;
-	border: none;
-	margin-bottom: 0.25rem;
-}
-
-.steps-item.active .steps-item-button,
-.steps-item.done .steps-item-button {
-	background: hsl(var(--accent-color-hue), var(--accent-color-saturation), 92%);
-}
-
-.steps-item.active,
-.steps-item.active .steps-item-button {
+/* Заголовок формы */
+form h2 {
+	margin-bottom: 25px;
+	font-size: 28px;
+	color: #333333;
+	text-align: center;
 	font-weight: bold;
+}
+
+/* Группа для каждого поля */
+.inputGroup {
+	margin-bottom: 20px;
+}
+
+/* Метки для полей */
+.inputGroup label {
+	display: block;
+	margin-bottom: 8px;
+	font-size: 14px;
+	color: #555555;
+}
+
+/* Поля ввода */
+.inputGroup input {
+	width: 100%;
+	padding: 12px;
+	font-size: 16px;
+	border: 1px solid #dddddd;
+	border-radius: 10px;
+	box-sizing: border-box;
+	box-shadow: inset 3px 3px 6px rgba(0, 0, 0, 0.1), inset -3px -3px 6px rgba(255, 255, 255, 0.5);
+	transition: all 0.3s ease;
+}
+
+/* Эффект при фокусе на поле ввода */
+.inputGroup input:focus {
+	outline: none;
+	border-color: #007bff;
+	box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5), inset 3px 3px 6px rgba(0, 0, 0, 0.1), inset -3px -3px 6px rgba(255, 255, 255, 0.5);
+}
+
+/* Стилизация кнопки */
+button {
+	width: 100%;
+	padding: 12px;
+	font-size: 16px;
+	background-color: #007bff;
+	color: #ffffff;
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1), -3px -3px 6px rgba(255, 255, 255, 0.5);
+}
+
+/* Эффект при наведении на кнопку */
+button:hover {
+	background-color: #0056b3;
+	box-shadow: 0px 5px 10px rgba(0, 123, 255, 0.3);
+}
+
+/* Эффект при клике на кнопку */
+button:active {
+	background-color: #004494;
+	box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.2);
+	transform: translateY(2px);
 }
