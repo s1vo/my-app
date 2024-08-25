@@ -1,19 +1,20 @@
 /* Контейнер формы */
 .formContainer {
-	background: linear-gradient(145deg, #ffffff, #e6e9ef);
+	background: #1e1e1e;
 	padding: 40px;
-	border-radius: 15px;
-	box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1), -10px -10px 20px rgba(255, 255, 255, 0.7);
-	max-width: 400px;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	min-width: 410px;
 	width: 100%;
 }
 
 /* Заголовок формы */
 form h2 {
 	margin-bottom: 25px;
-	font-size: 28px;
-	color: #333333;
+	font-size: 24px;
+	color: #00ff00;
 	text-align: center;
+	font-family: 'Courier New', Courier, monospace;
 	font-weight: bold;
 }
 
@@ -27,51 +28,53 @@ form h2 {
 	display: block;
 	margin-bottom: 8px;
 	font-size: 14px;
-	color: #555555;
+	color: #00ff00;
+	font-family: 'Courier New', Courier, monospace;
 }
 
 /* Поля ввода */
 .inputGroup input {
 	width: 100%;
-	padding: 12px;
+	padding: 10px;
 	font-size: 16px;
-	border: 1px solid #dddddd;
-	border-radius: 10px;
+	color: #00ff00;
+	background: #1e1e1e;
+	border: 1px solid #00ff00;
+	border-radius: 5px;
 	box-sizing: border-box;
-	box-shadow: inset 3px 3px 6px rgba(0, 0, 0, 0.1), inset -3px -3px 6px rgba(255, 255, 255, 0.5);
-	transition: all 0.3s ease;
+	font-family: 'Courier New', Courier, monospace;
 }
 
 /* Эффект при фокусе на поле ввода */
 .inputGroup input:focus {
 	outline: none;
-	border-color: #007bff;
-	box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5), inset 3px 3px 6px rgba(0, 0, 0, 0.1), inset -3px -3px 6px rgba(255, 255, 255, 0.5);
+	border-color: #00ff00;
+	background: #2b2b2b;
+}
+
+/* Ошибка */
+.error {
+	color: #ff0000;
+	font-size: 14px;
+	font-weight: bold;
+	font-family: 'Courier New', Courier, monospace;
 }
 
 /* Стилизация кнопки */
 button {
 	width: 100%;
-	padding: 12px;
-	font-size: 16px;
-	background-color: #007bff;
-	color: #ffffff;
-	border: none;
-	border-radius: 10px;
+	padding: 10px;
+	background-color: #1e1e1e;
+	color: #00ff00;
+	border: 1px solid #00ff00;
+	border-radius: 5px;
 	cursor: pointer;
-	transition: all 0.3s ease;
-	box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1), -3px -3px 6px rgba(255, 255, 255, 0.5);
+	font-family: 'Courier New', Courier, monospace;
 }
 
-/* Эффект при наведении на кнопку */
-button:hover {
-	background-color: #0056b3;
-	box-shadow: 0px 5px 10px rgba(0, 123, 255, 0.3);
-}
-
-/* Эффект при клике на кнопку */
-button:active {
-	background-color: #004494;
-	box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.2);
-	transform: translateY(2px);
+button:disabled {
+	background-color: #3a3a3a;
+	color: #555555;
+	cursor: not-allowed;
+	border-color: #555555;
 }

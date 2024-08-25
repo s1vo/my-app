@@ -1,94 +1,62 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as Yup from 'yup';
 import styles from './app.module.css';
-
 const App = () => {
-	const [form, setForm] = useState({
-		email: '',
-		password: '',
-		confirmPassword: '',
+	const validationSchema = Yup.object().shape({
+		email: Yup.string()
+			.required('Email is required')
+			.email('Email is invalid'),
+		password: Yup.string()
+			.required('Password is required')
+			.min(6, 'Password must be at least 6 characters'),
+		confirmPassword: Yup.string()
+			.required('Confirm Password is required')
+			.oneOf([Yup.ref('password')], 'Passwords do not match'),
 	});
 
-	const [errors, setErrors] = useState({});
+	const {
+		register,
+		handleSubmit,
+		formState: { errors, isValid },
+	} = useForm({
+		resolver: yupResolver(validationSchema),
+		mode: 'onChange',
+	});
 
-	const validate = () => {
-		const newErrors = {};
+	const submitButtonRef = useRef(null);
 
-		if (!form.email) {
-			newErrors.email = 'Требуется электронная почта';
-		} else if (!/\S+@\S+\.\S+/.test(form.email)) {
-			newErrors.email = 'Адрес электронной почты недействителен';
-		}
-
-		if (!form.password) {
-			newErrors.password = 'Требуется ввести пароль';
-		} else if (form.password.length < 6) {
-			newErrors.password = 'Пароль должен содержать не менее 6 символов';
-		}
-
-		if (form.confirmPassword !== form.password) {
-			newErrors.confirmPassword = 'Пароли не совпадают';
-		}
-
-		setErrors(newErrors);
-		return Object.keys(newErrors).length === 0;
-	};
-
-	const handleChange = (e) => {
-		setForm({ ...form, [e.target.name]: e.target.value });
-	};
-
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		if (validate()) {
-			console.log(form);
+	const onSubmit = (data) => {
+		console.log(data);
+		if (submitButtonRef.current) {
+			submitButtonRef.current.focus();
 		}
 	};
 
 	return (
 		<div className={styles.formContainer}>
-			<form onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit(onSubmit)}>
 				<h2>Регистрация</h2>
 				<div className={styles.inputGroup}>
 					<label htmlFor="email">Email</label>
-					<input
-						type="email"
-						id="email"
-						name="email"
-						value={form.email}
-						onChange={handleChange}
-						required
-					/>
-					{errors.email && <p className={styles.error}>{errors.email}</p>}
+					<input type="email" id="email" {...register('email')} />
+					{errors.email && <p className={styles.error}>{errors.email.message}</p>}
 				</div>
 				<div className={styles.inputGroup}>
 					<label htmlFor="password">Password</label>
-					<input
-						type="password"
-						id="password"
-						name="password"
-						value={form.password}
-						onChange={handleChange}
-						required
-					/>
-					{errors.password && <p className={styles.error}>{errors.password}</p>}
+					<input type="password" id="password" {...register('password')} />
+					{errors.password && <p className={styles.error}>{errors.password.message}</p>}
 				</div>
 				<div className={styles.inputGroup}>
 					<label htmlFor="confirm-password">Confirm Password</label>
-					<input
-						type="password"
-						id="confirm-password"
-						name="confirmPassword"
-						value={form.confirmPassword}
-						onChange={handleChange}
-						required
-					/>
-					{errors.confirmPassword && (
-						<p className={styles.error}>{errors.confirmPassword}</p>
-					)}
+					<input type="password" id="confirm-password" {...register('confirmPassword')} />
+					{errors.confirmPassword && <p className={styles.error}>{errors.confirmPassword.message}</p>}
 				</div>
 				<button
 					type="submit"
-					disabled={Object.keys(errors).length > 0 || !form.email || !form.password || !form.confirmPassword}
+					disabled={!isValid}
+					ref={submitButtonRef}
 				>
 					Зарегистрироваться
 				</button>
@@ -98,3 +66,4 @@ const App = () => {
 };
 
 export default App;
+
