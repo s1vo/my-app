@@ -29,7 +29,6 @@ body {
 	width: 100%;
 }
 
-/* Стили для заголовка */
 h1 {
 	text-align: center;
 	margin-bottom: 20px;
@@ -37,40 +36,72 @@ h1 {
 	color: #2c3e50;
 }
 
-/* Стили для списка дел */
+.input-section {
+	display: flex;
+	gap: 10px;
+	margin-bottom: 20px;
+}
+
+input[type="text"] {
+	padding: 10px;
+	width: 100%;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+}
+
+button {
+	padding: 10px 15px;
+	background-color: #3498db;
+	border: none;
+	color: white;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: #2980b9;
+}
+
+.search-section {
+	margin-bottom: 20px;
+}
+
+.sort-button {
+	display: block;
+	margin: 0 auto 20px;
+}
+
 ul {
-	list-style-type: none;
+	list-style: none;
+	padding: 0;
 }
 
 li {
 	background-color: #f9fafb;
-	padding: 15px;
-	margin-bottom: 10px;
+	padding: 10px;
 	border-radius: 5px;
+	margin-bottom: 10px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	transition: background-color 0.3s ease;
 }
 
-li:hover {
-	background-color: #eef1f5;
-}
-
-li.completed {
-	text-decoration: line-through;
-	color: #95a5a6;
+li input {
+	border: none;
+	background-color: transparent;
+	font-size: 16px;
+	flex-grow: 1;
 }
 
 li button {
-	background-color: transparent;
+	background-color: #e74c3c;
+	color: white;
 	border: none;
-	color: #e74c3c;
+	border-radius: 5px;
+	padding: 5px 10px;
 	cursor: pointer;
-	font-size: 18px;
 }
 
 li button:hover {
-	color: #c0392b;
+	background-color: #c0392b;
 }
-
