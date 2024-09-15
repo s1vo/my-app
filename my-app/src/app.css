@@ -1,107 +1,172 @@
 /* Основные стили для всего приложения */
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
-
 body {
 	font-family: 'Arial', sans-serif;
 	background-color: #f0f4f8;
 	color: #333;
 	line-height: 1.6;
-}
-
-.App {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	min-height: 100vh;
-	padding: 20px;
+	margin: 0;
+	padding: 0;
 }
 
 .container {
+	max-width: 600px;
+	margin: 40px auto;
+	padding: 20px;
 	background-color: #fff;
-	padding: 30px;
 	border-radius: 10px;
-	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-	max-width: 500px;
-	width: 100%;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
+	font-size: 2rem;
+	color: #2c3e50;
 	text-align: center;
 	margin-bottom: 20px;
-	font-size: 24px;
-	color: #2c3e50;
+	letter-spacing: 1.2px;
 }
 
 .input-section {
 	display: flex;
-	gap: 10px;
 	margin-bottom: 20px;
 }
 
 input[type="text"] {
+	flex: 1;
 	padding: 10px;
-	width: 100%;
 	border: 1px solid #ddd;
 	border-radius: 5px;
+	font-size: 16px;
+	outline: none;
+	transition: border-color 0.3s;
+}
+
+input[type="text"]:focus {
+	border-color: #3498db;
 }
 
 button {
-	padding: 10px 15px;
+	padding: 10px 20px;
 	background-color: #3498db;
 	border: none;
 	color: white;
 	border-radius: 5px;
 	cursor: pointer;
+	font-size: 16px;
+	transition: background-color 0.3s, transform 0.3s;
 }
 
 button:hover {
 	background-color: #2980b9;
+	transform: scale(1.05);
 }
 
-.search-section {
-	margin-bottom: 20px;
-}
-
-.sort-button {
-	display: block;
-	margin: 0 auto 20px;
+button:disabled {
+	background-color: #95a5a6;
 }
 
 ul {
-	list-style: none;
+	list-style-type: none;
 	padding: 0;
 }
 
 li {
+	padding: 15px;
 	background-color: #f9fafb;
-	padding: 10px;
+	border: 1px solid #ddd;
 	border-radius: 5px;
 	margin-bottom: 10px;
+	transition: box-shadow 0.3s, transform 0.3s;
+}
+
+li:hover {
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	transform: translateY(-3px);
+}
+
+li a {
+	text-decoration: none;
+	color: #2c3e50;
+	font-weight: bold;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: block;
+}
+
+/* Страница задачи */
+textarea {
+	width: 100%;
+	height: 150px;
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	font-size: 16px;
+	margin-bottom: 20px;
+	transition: border-color 0.3s;
+}
+
+textarea:focus {
+	border-color: #3498db;
+}
+
+.task-buttons {
 	display: flex;
 	justify-content: space-between;
-	align-items: center;
+	margin-top: 20px;
 }
 
-li input {
-	border: none;
-	background-color: transparent;
-	font-size: 16px;
-	flex-grow: 1;
-}
-
-li button {
+button.delete {
 	background-color: #e74c3c;
-	color: white;
-	border: none;
-	border-radius: 5px;
-	padding: 5px 10px;
-	cursor: pointer;
 }
 
-li button:hover {
+button.delete:hover {
 	background-color: #c0392b;
+}
+
+/* Кнопка назад */
+button.back {
+	background-color: transparent;
+	border: none;
+	color: #3498db;
+	font-size: 16px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	transition: color 0.3s;
+}
+
+button.back:hover {
+	color: #2980b9;
+}
+
+/* Иконка для кнопки назад */
+button.back .icon {
+	margin-right: 5px;
+}
+
+/* Страница 404 */
+.not-found {
+	text-align: center;
+	margin-top: 50px;
+}
+
+.not-found h1 {
+	font-size: 3rem;
+	color: #e74c3c;
+}
+
+.not-found p {
+	font-size: 1.2rem;
+	color: #2c3e50;
+	margin-bottom: 20px;
+}
+
+.not-found a {
+	color: #3498db;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.not-found a:hover {
+	text-decoration: underline;
 }
