@@ -1,90 +1,57 @@
-import React, { useState, useEffect, useCallback } from "react";
-import axios from "axios";
-import { debounce } from "lodash";
+import React, { useState, useEffect } from "react";
+import { ref, onValue, push, remove, update } from "firebase/database";
+import db  from './firebase';
 import './app.css';
 
 function App() {
 	const [todos, setTodos] = useState([]);
 	const [newTodo, setNewTodo] = useState("");
-	const [searchQuery, setSearchQuery] = useState("");
-	const [isSorted, setIsSorted] = useState(false);
+
 
 	// Получение списка дел при загрузке компонента
 	useEffect(() => {
 		fetchTodos();
 	}, []);
 
-	// Функция для получения дел из JSON Server
 	const fetchTodos = () => {
-		axios
-			.get("http://localhost:3001/todos")
-			.then((response) => {
-				setTodos(response.data);
-			})
-			.catch((error) => console.error("Error fetching the todos:", error));
+		const todoRef = ref(db, 'todos');
+		onValue(todoRef, (snapshot) => {
+			const todosData = snapshot.val();
+			const todosList = [];
+			for (let id in todosData) {
+				todosList.push({ id, ...todosData[id] });
+			}
+			setTodos(todosList);
+		});
 	};
 
 	// Добавление нового дела
 	const addTodo = () => {
 		if (!newTodo) return;
-		axios
-			.post("http://localhost:3001/todos", { title: newTodo, completed: false })
-			.then((response) => {
-				setTodos([...todos, response.data]);
-				setNewTodo("");
-			});
+		const todoRef = ref(db, 'todos');
+		push(todoRef, {
+			title: newTodo,
+			completed: false
+		});
+		setNewTodo("");
 	};
 
 	// Удаление дела
 	const deleteTodo = (id) => {
-		axios.delete(`http://localhost:3001/todos/${id}`).then(() => {
-			setTodos(todos.filter((todo) => todo.id !== id));
-		});
+		const todoRef = ref(db, `todos/${id}`);
+		remove(todoRef);
 	};
 
-	// Обновление дела (изменение названия)
+	// Обновление дела
 	const updateTodo = (id, updatedTitle) => {
-		axios
-			.put(`http://localhost:3001/todos/${id}`, { title: updatedTitle })
-			.then((response) => {
-				setTodos(
-					todos.map((todo) => (todo.id === id ? response.data : todo))
-				);
-			});
-	};
-
-	// Поиск дел по введенной фразе с использованием debounce
-	const debouncedSearch = useCallback(
-		debounce((query) => {
-			axios
-				.get(`http://localhost:3001/todos?q=${query}`)
-				.then((response) => {
-					setTodos(response.data);
-				});
-		}, 300),
-		[]
-	);
-
-	const handleSearch = (e) => {
-		const query = e.target.value;
-		setSearchQuery(query);
-		debouncedSearch(query);
-	};
-
-	// Сортировка дел по алфавиту
-	const handleSort = () => {
-		const sortedTodos = [...todos].sort((a, b) =>
-			a.title.localeCompare(b.title)
-		);
-		setIsSorted(!isSorted);
-		setTodos(isSorted ? todos : sortedTodos);
+		const todoRef = ref(db, `todos/${id}`);
+		update(todoRef, { title: updatedTitle });
 	};
 
 	return (
 		<div className="App">
 			<div className="container">
 				<h1>Todo List</h1>
-
 				{/* Поле для добавления дела */}
 				<div className="input-section">
 					<input
@@ -93,25 +60,8 @@ function App() {
 						onChange={(e) => setNewTodo(e.target.value)}
 						placeholder="Введите новую задачу"
 					/>
-					<button onClick={addTodo}>Add</button>
+					<button onClick={addTodo}>Добавить</button>
 				</div>
-
-				{/* Поиск по делам */}
-				<div className="search-section">
-					<input
-						type="text"
-						value={searchQuery}
-						onChange={handleSearch}
-						placeholder="Поиск задач"
-					/>
-				</div>
-
-				{/* Кнопка для сортировки */}
-				<button className="sort-button" onClick={handleSort}>
-					{isSorted ? "Отсортировать" : "Сортировать по алфавиту"}
-				</button>
-
-				{/* Список дел */}
 				<ul>
 					{todos.map((todo) => (
 						<li key={todo.id}>
